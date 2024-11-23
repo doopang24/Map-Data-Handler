@@ -36,7 +36,16 @@ public class Application {
     public MapInfo parseStage(String singleStage) {
         MapInfo mapInfo = new MapInfo();
         String[] lines = singleStage.split("\n");
-        String stageName = lines[0].trim();
+        String stageName = lines[0].strip();
+
+        StringBuilder builder = new StringBuilder();
+        for(int i=1; i<lines.length; i++) {
+            builder.append(lines[i]);
+            if(i<lines.length-1) {
+                builder.append("\n");
+            }
+        }
+        String stageComposition = builder.toString();
 
         int height = lines.length - 1;
         int width = lines[1].length();
@@ -63,7 +72,7 @@ public class Application {
             }
         }
         mapInfo.setStageName(stageName);
-        mapInfo.setInputStage(singleStage);
+        mapInfo.setInputStage(stageComposition);
         mapInfo.setMapData(mapData);
         mapInfo.setHeight(height);
         mapInfo.setWidth(width);
