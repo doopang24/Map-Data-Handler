@@ -63,6 +63,7 @@ public class Application {
             }
         }
         mapInfo.setStageName(stageName);
+        mapInfo.setInputStage(singleStage);
         mapInfo.setMapData(mapData);
         mapInfo.setHeight(height);
         mapInfo.setWidth(width);
@@ -77,7 +78,7 @@ public class Application {
     public void printMapInfo(MapInfo mapData) {
         System.out.println(mapData.getStageName());
         System.out.println();
-        System.out.println(mapData.getMapData());
+        System.out.println(mapData.getInputStage());
         System.out.println();
         System.out.println("가로크기: " + mapData.getWidth());
         System.out.println("세로크기: " + mapData.getHeight());

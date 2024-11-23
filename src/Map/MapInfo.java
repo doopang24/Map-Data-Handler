@@ -3,6 +3,7 @@ package Map;
 public class MapInfo {
 
     private String stageName;
+    private String inputStage;
     private int[][] mapData;
     private int width;
     private int height;
@@ -14,7 +15,10 @@ public class MapInfo {
     public String getStageName() { return stageName; }
     public void setStageName(String stageName) { this.stageName = stageName; }
 
-    public int[][] getMapData() { return mapData; }
+    public String getInputStage() { return inputStage; }
+    public void setInputStage(String inputStage) { this.inputStage = inputStage; }
+
+    public int[][] getMapData() { return mapData;}
     public void setMapData(int[][] mapData) { this.mapData = mapData; }
 
     public int getWidth() { return width; }
