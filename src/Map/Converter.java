@@ -3,7 +3,7 @@ package Map;
 import java.util.Map;
 import java.util.HashMap;
 
-public class MapInfoConverter {
+public class Converter {
 
     private static final Map<Character, Integer> symbolToValue = new HashMap<>();   // 기호를 숫자로 연결하는 HashMap 저장
 
