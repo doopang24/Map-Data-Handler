@@ -2,6 +2,7 @@ package Map;
 
 public class MapInfo {
 
+    private String stageName;
     private int[][] mapData;
     private int width;
     private int height;
@@ -9,6 +10,9 @@ public class MapInfo {
     private int ballCount;  // 공 갯수
     private int playerRow;  // 플레이어 행 위치
     private int playerCol;  // 플레이어 열 위치
+
+    public String getStageName() { return stageName; }
+    public void setStageName(String stageName) { this.stageName = stageName; }
 
     public int[][] getMapData() { return mapData; }
     public void setMapData(int[][] mapData) { this.mapData = mapData; }
