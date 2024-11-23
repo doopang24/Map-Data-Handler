@@ -8,7 +8,7 @@ public class Application {
         Application application = new Application();
         String[] stages = application.receiveStages();
         for (String singleStage : stages) {
-            MapInfo mapInfo = application.parseStage(singleStage);
+            MapInfo mapInfo = application.parseStage(singleStage.strip());
             application.printMapInfo(mapInfo);
         }
     }
