@@ -1,17 +1,15 @@
 package Map;
 
-import java.util.*;
-
 public class Application {
 
-    MapInfo mapInfo = new MapInfo();
     Converter converter = new Converter();
 
     public static void main(String[] args) {
         Application application = new Application();
         String[] stages = application.receiveStages();
         for (String singleStage : stages) {
-            application.parseStage(singleStage);
+            MapInfo mapInfo = application.parseStage(singleStage);
+            application.printMapInfo(mapInfo);
         }
     }
 
@@ -35,8 +33,8 @@ public class Application {
         return stages;
     }
 
-        application.receiveMapInfo();
     public MapInfo parseStage(String singleStage) {
+        MapInfo mapInfo = new MapInfo();
         String[] lines = singleStage.split("\n");
         String stageName = lines[0].trim();
 
@@ -64,6 +62,7 @@ public class Application {
                 }
             }
         }
+        mapInfo.setStageName(stageName);
         mapInfo.setMapData(mapData);
         mapInfo.setHeight(height);
         mapInfo.setWidth(width);
@@ -71,13 +70,20 @@ public class Application {
         mapInfo.setBallCount(ballCount);
         mapInfo.setPlayerRow(playerRow);
         mapInfo.setPlayerCol(playerCol);
+
+        return mapInfo;
     }
 
-    public void printMapInfo() {
-        System.out.println("가로크기: ");
-        System.out.println("세로크기: ");
-        System.out.println("구멍의 수: ");
-        System.out.println("공의 수: ");
-        System.out.println("플레이어 위치: ");
+    public void printMapInfo(MapInfo mapData) {
+        System.out.println(mapData.getStageName());
+        System.out.println();
+        System.out.println(mapData.getMapData());
+        System.out.println();
+        System.out.println("가로크기: " + mapData.getWidth());
+        System.out.println("세로크기: " + mapData.getHeight());
+        System.out.println("구멍의 수: " + mapData.getHoleCount());
+        System.out.println("공의 수: " + mapData.getBallCount());
+        System.out.println("플레이어 위치: " + mapData.getPlayerRow() + "행 " + mapData.getPlayerCol() + "열");
+        System.out.println();
     }
 }
