@@ -36,12 +36,41 @@ public class Application {
     }
 
         application.receiveMapInfo();
+    public MapInfo parseStage(String singleStage) {
+        String[] lines = singleStage.split("\n");
+        String stageName = lines[0].trim();
 
+        int height = lines.length - 1;
+        int width = lines[1].length();
+        int[][] mapData = new int[height][width];
 
-    }
+        int holeCount = 0;
+        int ballCount = 0;
+        int playerRow = -1;
+        int playerCol = -1;
 
-    public void receiveMapInfo() {
-        Scanner scanner = new Scanner(System.in);
+        for (int i = 1; i <= height; i++) {
+            String line = lines[i];
+            for (int j = 0; j < width; j++) {
+                char symbol = line.charAt(j);
+                int value = converter.charToValue(symbol);
+                mapData[i - 1][j] = value;
+
+                if (value == 1) holeCount++;
+                else if (value == 2) ballCount++;
+                else if (value == 3) {
+                    playerRow = i - 1;
+                    playerCol = j;
+                }
+            }
+        }
+        mapInfo.setMapData(mapData);
+        mapInfo.setHeight(height);
+        mapInfo.setWidth(width);
+        mapInfo.setHoleCount(holeCount);
+        mapInfo.setBallCount(ballCount);
+        mapInfo.setPlayerRow(playerRow);
+        mapInfo.setPlayerCol(playerCol);
     }
 
     public void printMapInfo() {
