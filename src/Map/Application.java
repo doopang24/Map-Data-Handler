@@ -39,18 +39,20 @@ public class Application {
         String stageName = lines[0].strip();
 
         StringBuilder builder = new StringBuilder();
-        for(int i=1; i<lines.length; i++) {
+        for (int i = 1; i < lines.length; i++) {
             builder.append(lines[i]);
-            if(i<lines.length-1) {
+            if (i < lines.length - 1) {
                 builder.append("\n");
             }
         }
         String stageComposition = builder.toString();
 
         int height = lines.length - 1;
-        int width = lines[1].length();
+        int width = 0;
+        for (int i = 1; i < lines.length; i++) {
+            if (lines[i].length() > width) width = lines[i].length();
+        }
         int[][] mapData = new int[height][width];
-
         int holeCount = 0;
         int ballCount = 0;
         int playerRow = -1;
@@ -58,7 +60,7 @@ public class Application {
 
         for (int i = 1; i <= height; i++) {
             String line = lines[i];
-            for (int j = 0; j < width; j++) {
+            for (int j = 0; j < line.length(); j++) {
                 char symbol = line.charAt(j);
                 int value = converter.charToValue(symbol);
                 mapData[i - 1][j] = value;
@@ -66,8 +68,8 @@ public class Application {
                 if (value == 1) holeCount++;
                 else if (value == 2) ballCount++;
                 else if (value == 3) {
-                    playerRow = i - 1;
-                    playerCol = j;
+                    playerRow = i;
+                    playerCol = j + 1;
                 }
             }
         }
